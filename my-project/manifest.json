@@ -1,0 +1,9 @@
+{
+  "name": "美丽修行",
+  "short_name": "bevol",
+  "theme_color": "#ac69fe",
+  "background_color": "#ac69fe",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/"
+}
