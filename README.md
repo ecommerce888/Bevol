@@ -64,7 +64,7 @@ __完成的功能__
 
 * preload实践，在首页加载完成后根据数据埋点找到用户最有可能访问的下一个页面，提前加载数据储存到vuex中。
 * precache，precache需要service worker的支持，把数据缓存在service worker中，可以减少请求次数并实现秒加载，尚在研究。
-* render实践，用app shell（骨架屏）代替loader，使页面尽快地呈现给用户。骨架屏是一段纯html和css，在慢网或者无网的情况下会个用户更好的体验。增加app的停留时间。
+* render实践，用app shell（骨架屏）代替loader，使页面尽快地呈现给用户。骨架屏是一段纯html和css，在慢网或者无网的情况下用户的体验更好。增加app的停留时间。
 * lazyout实践，懒加载不用多说，用到才去请求数据，减少首屏渲染时间。
 
 __待完成的功能__
