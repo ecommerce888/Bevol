@@ -18,10 +18,13 @@ __技术栈__
 cd my-project
 ```
 ```bash
-npm init       --加载依赖
+$ npm init          --创建package.json文件
 ```
 ```bash
-npm run dev    --开启本地dev服务器
+$ npm install       --加载依赖
+```
+```bash
+$ npm run dev       --开启本地dev服务器
 ```
 ## 预览
 
