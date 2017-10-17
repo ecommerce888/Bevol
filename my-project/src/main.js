@@ -7,10 +7,16 @@ import router from './router'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import store from  './vuex/store'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import VueScroller from 'vue-scroller'
+require('swiper/dist/css/swiper.css')
 
 
 Vue.config.productionTip = false;
 Vue.use(MuseUI);
+Vue.use(VueAwesomeSwiper);
+Vue.use(VueScroller)
+
 
 /* eslint-disable no-new */
 new Vue({

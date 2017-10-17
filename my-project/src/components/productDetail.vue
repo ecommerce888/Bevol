@@ -1,63 +1,82 @@
 <style>
-  .container{
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .container {
     background-color: #F5F5F5;
   }
-  .tabs{
+  .tabs {
     margin-top: 4px;
-    background-color: white;
+    background-color: white!important;
     border-bottom: 1px solid #F5F5F5;
   }
-  .tabs-title{
+  .tabs-title {
     color: #313233;
   }
-  .bottom-line{
-       background-color: #AC69FE;
-     }
+  .bottom-line {
+    background-color: #AC69FE!important;
+  }
+
   /*成分分析*/
-  .com-analysis{
+  .com-analysis {
     height: 166px;
     padding: 15px 38px 18px 38px;
     background-color: white;
   }
-  #record{
+
+  #record {
     font-size: 12px;
     color: #7C797F;
     text-align: center;
   }
-  #record a{
+
+  #record a {
     text-decoration: none;
     color: #AC69FE;
     text-align: center;
   }
-  .composition-container{
+
+  .composition-container {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-top: 12px;
     width: 100%;
     height: 18px;
   }
-  .composition-container div:nth-child(1){
-    width: calc(60% + 15px);
-    height: 100%;
+
+  .composition-container div:nth-child(1) {
+    position: absolute;
+    left: 38px;
+    z-index: 0;
+    /*width: calc(60% + 15px);*/
+    width: calc(100% - 76px);
+    height: 18px;
     background-color: #87C67D;
     border-radius: 50px;
   }
-  .composition-container div:nth-child(2){
-    margin-left: -15px;
-    width: calc(30% + 15px);
+
+  .composition-container div:nth-child(2) {
+    position: relative;
+    z-index: 1;
+    margin-right: -10px;
+    /*width: calc(30% + 15px);*/
     height: 100%;
     background-color: #F7CC36;
     border-radius: 50px;
   }
-  .composition-container div:nth-child(3){
-    margin-left: -15px;
+
+  .composition-container div:nth-child(3) {
+    position: relative;
+    z-index: 2;
     width: 10%;
     height: 100%;
     background-color: #FF7972;
     border-radius: 50px;
   }
-  .composition-intro{
+
+  .composition-intro {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -65,19 +84,31 @@
     width: 100%;
     height: 18px;
   }
-  .composition-intro >div p,img{
+
+  .composition-intro > div p, img {
     display: inline-block;
     vertical-align: middle;
   }
-  .composition-intro >div p{
+
+  .composition-intro > div p {
     margin-left: 6px;
     font-size: 12px;
     color: #323233;
   }
-  .composition-intro >div:nth-child(1) p{color: #87C67D;}
-  .composition-intro >div:nth-child(2) p{color: #F7CC36;}
-  .composition-intro >div:nth-child(3) p{color: #FF574F;}
-  .check-comp{
+
+  .composition-intro > div:nth-child(1) p {
+    color: #87C67D;
+  }
+
+  .composition-intro > div:nth-child(2) p {
+    color: #F7CC36;
+  }
+
+  .composition-intro > div:nth-child(3) p {
+    color: #FF574F;
+  }
+
+  .check-comp {
     margin: 23px auto;
     width: 143px;
     padding: 5px 12px 5px 12px;
@@ -87,21 +118,25 @@
     color: #AC69FE;
     letter-spacing: 1px;
   }
+
   /*安全说，功效说*/
-  .comp-item-second{
+  .comp-item-second {
     height: 166px;
     padding: 16px 12px 16px 12px;
     background-color: white;
   }
-  .comp-item-second > p:nth-child(1){
+
+  .comp-item-second > p:nth-child(1) {
     text-align: center;
   }
-  .flex-container{
+
+  .flex-container {
     display: flex;
     flex-flow: row wrap;
     margin-top: 17px;
   }
-  .flex-container p{
+
+  .flex-container p {
     margin-left: 12px;
     width: calc(50% - 6px);
     padding-top: 10px;
@@ -111,14 +146,17 @@
     font-size: 14px;
     color: #323233;
   }
-  .flex-container p:nth-child(3),p:nth-child(4){
-       margin-top: 12px;
+
+  .flex-container p:nth-child(3), p:nth-child(4) {
+    margin-top: 12px;
   }
-  .flex-container p:nth-child(1),p:nth-child(3){
+
+  .flex-container p:nth-child(1), p:nth-child(3) {
     margin-left: 0;
   }
+
   /*肤质匹配*/
-  .comp-item-four{
+  .comp-item-four {
     height: 166px;
     display: flex;
     flex-flow: column nowrap;
@@ -126,7 +164,8 @@
     justify-content: center;
     background-color: white;
   }
-  .comp-item-four p{
+
+  .comp-item-four p {
     width: 200px;
     padding: 10px 0 10px 0;
     font-size: 14px;
@@ -134,45 +173,52 @@
     text-align: center;
     background-color: #F8F8F8;
   }
-  .comp-item-four p:nth-child(2){
+
+  .comp-item-four p:nth-child(2) {
     margin-top: 12px;
   }
-  .product-detail{
+
+  .product-detail {
     margin-top: 44px;
     display: flex;
     flex-flow: row nowrap;
     padding: 16px 12px 16px 12px;
     background-color: white;
   }
-  .product-detail-intro{
+
+  .product-detail-intro {
     flex-grow: 1;
     margin-left: 12px;
     text-align: left;
   }
-  .product-detail-intro p:nth-child(1){
+
+  .product-detail-intro p:nth-child(1) {
     font-size: 15px;
     color: #313033;
     line-height: 22px;
   }
-  .product-detail-intro p:nth-child(2){
+
+  .product-detail-intro p:nth-child(2) {
     margin-top: 2px;
     font-size: 12px;
     color: #313033;
     line-height: 18px;
   }
-  .product-detail-intro p:nth-child(3){
+
+  .product-detail-intro p:nth-child(3) {
     margin-top: 2px;
     font-size: 12px;
     color: #959199;
     line-height: 18px;
   }
-  .product-detail-intro p:nth-child(4){
+
+  .product-detail-intro p:nth-child(4) {
     display: inline-block;
     font-size: 12px;
     color: #676767;
     letter-spacing: 0;
   }
-  .mention-user-part{
+  .mention-user-part {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -182,20 +228,24 @@
     background-color: white;
     border-bottom: 2px solid #F5F5F5;
   }
-  .mention-user-part p{
+
+  .mention-user-part p {
     font-size: 15px;
     color: #323133;
   }
-  .mention-user-part img{
+
+  .mention-user-part img {
     margin-left: 5px;
     width: 18px;
-    height:18px;
+    height: 18px;
   }
+
   /*评论*/
-  .comment-container{
+  .comment-container {
     margin-top: 4px;
   }
-  .comment-title{
+
+  .comment-title {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -204,18 +254,22 @@
     background-color: white;
     border-bottom: 1px solid #D9D9D9;
   }
-  .comment-title p{
+
+  .comment-title p {
     font-size: 15px;
     color: #4B494C;
   }
-  .comment-title > div p,img{
+
+  .comment-title > div p, img {
     display: inline-block;
   }
-  .comment-title > div p{
+
+  .comment-title > div p {
     font-size: 12px;
     color: #AC69FE;
   }
-  .hot-comment{
+
+  .hot-comment {
     padding: 0 12px 0 12px;
     font-size: 12px;
     color: #323133;
@@ -223,33 +277,97 @@
     text-align: left;
     background-color: white;
   }
-  .comment-main{
+
+  .comment-main {
     padding-top: 6px;
     background-color: white;
   }
+
   /* 骨架屏 */
-  .load-img{
+  .load-img {
     background-color: #e8e8e8;
   }
-  .load-p > p:nth-child(1){
+
+  .load-p > p:nth-child(1) {
     height: 20px;
     background-color: #e8e8e8;
   }
-  .load-p > p:nth-child(2){
+
+  .load-p > p:nth-child(2) {
     margin-top: 15px;
     width: 70%;
     height: 20px;
     background-color: #e8e8e8;
   }
-  .load-p > p:nth-child(3){
+
+  .load-p > p:nth-child(3) {
     margin-top: 10px;
     width: 30%;
     height: 15px;
     background-color: #e8e8e8;
   }
-  .load-p > p:nth-child(4){
+
+  .load-p > p:nth-child(4) {
     width: 50%;
     height: 15px;
+    background-color: #e8e8e8;
+  }
+  .flex-container  .font-active{
+    color: #ac69fe;
+  }
+  /* 评论骨架屏 */
+  .comment-shell-container{
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .comment-shell-container > div{
+    margin-left: 12px;
+    margin-top: 12px;
+    width: 40px;
+    height: 40px;
+    background-color: #e8e8e8;
+    border-radius: 50%;
+  }
+  .comment-shell-container > section{
+    margin-left: 8px;
+  }
+  .comment-shell-container > section > p:nth-child(1){
+    margin-top: 15px;
+    width: 108px;
+    height: 20px;
+    background-color: #e8e8e8;
+  }
+  .comment-shell-container > section > p:nth-child(2){
+    margin-top: 5px;
+    width: 128px;
+    height: 16px;
+    background-color: #e8e8e8;
+  }
+  .comment-shell-container > p{
+    position: absolute;
+    top: 15px;
+    right: 12px;
+    width: 50px;
+    height: 17px;
+    background-color: #e8e8e8;
+  }
+  #shell-star{
+    margin-left: 67px;
+    margin-top: 8px;
+    width: 80px;
+    height: 14px;
+    background-color: #e8e8e8;
+  }
+  #shell-content{
+    margin-top: 10px;
+    margin-left: 60px;
+    width: 70%;
+    height: 63px;
     background-color: #e8e8e8;
   }
 </style>
@@ -260,7 +378,8 @@
       <img slot="right" src="./../img/more-icom.png" alt="" width="17" height="17">
     </topbar>
     <div v-show="productInfo.title" class="product-detail">
-      <img :src="$route.params.imgSrc" alt="" width="120" height="120" onerror="onerror=null;src='http://iph.href.lu/120x120'">
+      <img :src="$route.params.imgSrc" alt="" width="120" height="120"
+           onerror="onerror=null;src='http://iph.href.lu/120x120'">
       <div class="product-detail-intro">
         <p>{{productInfo.title}}</p>
         <p>{{productInfo.alias}}</p>
@@ -282,16 +401,16 @@
     <!-- 骨架屏end-->
     <mu-tabs :value="activeTab" @change="handleTabChange" class="tabs" lineClass="bottom-line">
       <mu-tab value="tab1" title="成分分析" titleClass="tabs-title"/>
-      <mu-tab value="tab2" title="安全说"   titleClass="tabs-title"/>
-      <mu-tab value="tab3" title="功效说"   titleClass="tabs-title"/>
+      <mu-tab value="tab2" title="安全说" titleClass="tabs-title"/>
+      <mu-tab value="tab3" title="功效说" titleClass="tabs-title"/>
       <mu-tab value="tab4" title="肤质匹配" titleClass="tabs-title"/>
     </mu-tabs>
     <div v-if="activeTab === 'tab1'" class="com-analysis">
-      <p id="record">本商品的成分来自该商品的<a>进口备案</a></p>
+      <p id="record">本商品的成分来自该商品的<a>{{dataTypeStr}}</a></p>
       <div class="composition-container">
         <div></div>
-        <div></div>
-        <div></div>
+        <div :style="'width:' + warnWidth + '%;'"></div>
+        <div :style="'width:' + dangerWidth + '%;'"></div>
       </div>
       <div class="composition-intro">
         <div>
@@ -307,57 +426,73 @@
           <p>危险成分</p>
         </div>
       </div>
-
       <div class="check-comp">
-        查看全部27种成分
+        查看全部{{compositionData.length}}种成分
       </div>
     </div>
     <!--安全说-->
     <div v-if="activeTab === 'tab2'">
       <div class="comp-item-second">
-        <p>安全指数</p>
+        <p>安全指数：<span> <star :star-count="parseInt(safeData[0].num)"></star> </span></p>
         <div class="flex-container">
-          <p>香精：2种</p>
-          <p>防腐剂：4种</p>
-          <p>风险成分：4种</p>
-          <p>孕妇慎用：1种</p>
+          <p>{{safeData[1].name}}：<span class="font-active">{{safeData[1].num}}种</span></p>
+          <p>{{safeData[2].name}}：<span class="font-active">{{safeData[2].num}}种</span></p>
+          <p>{{safeData[3].name}}：<span class="font-active">{{safeData[3].num}}种</span></p>
+          <p>{{safeData[4].name}}：<span class="font-active">{{safeData[4].num}}种</span></p>
         </div>
       </div>
     </div>
     <div v-if="activeTab === 'tab3'">
       <div class="comp-item-second">
-        <div class="flex-container">
-          <p>香精：2种</p>
-          <p>防腐剂：4种</p>
-          <p>风险成分：4种</p>
-          <p>孕妇慎用：1种</p>
+        <div v-if="effectData.length < 3" class="flex-container">
+          <p v-for="item in effectData">{{item.name == null ? "主要功效成分" : item.name}}：{{item.num}}种</p>
+        </div>
+        <div v-else class="flex-container">
+          <p>主要功效成分：<span class="font-active">{{effectData[0].num}}种</span></p>
+          <p>{{effectData[1].name}}：<span class="font-active">{{effectData[1].num}}种</span></p>
+          <p>{{effectData[2].name}}：<span class="font-active">{{effectData[2].num}}种</span></p>
+          <p class="font-active">查看全部功效成分</p>
         </div>
       </div>
-  </div>
+    </div>
 
     <div v-if="activeTab === 'tab4'">
-       <div class="comp-item-four">
-          <p>适合我的肤质：8种</p>
-          <p>不适合我的肤质：4种</p>
-       </div>
+      <div class="comp-item-four">
+        <p>适合我的肤质：<span class="font-active">14种</span></p>
+        <p>不适合我的肤质：<span class="font-active">8种</span></p>
+      </div>
     </div>
 
-    <div class="mention-user-part">
-      <span>提到该产品的心得</span>
-      <img src="../img/home_into.png" alt="">
-    </div>
+    <!--<div class="mention-user-part">-->
+      <!--<span>提到该产品的心得</span>-->
+      <!--<img src="../img/home_into.png" alt="">-->
+    <!--</div>-->
 
     <div class="comment-container">
-       <div class="comment-title">
-         <p>评论({{commentTotal}})</p>
-         <div>
-           <p>同肤质评论</p>
-           <img src="../img/skin_guid_forward.png" alt="" width="9" height="9">
-         </div>
-       </div>
+      <div class="comment-title">
+        <p>评论({{commentTotal}})</p>
+        <div>
+          <p>同肤质评论</p>
+          <img src="../img/skin_guid_forward.png" alt="" width="9" height="9">
+        </div>
+      </div>
       <div class="comment-main">
         <p class="hot-comment">热门评论</p>
-        <comment :comment-data = "commentData"></comment>
+        <comment v-show="commentData.length != 0" :comment-data="commentData"></comment>
+        <!-- 评论骨架屏 -->
+        <div v-show="commentData.length == 0">
+         <div class="comment-shell-container">
+              <div></div>
+              <section>
+                <p></p>
+                <p></p>
+              </section>
+              <p></p>
+         </div>
+         <div id="shell-star"></div>
+         <div id="shell-content"></div>
+        </div>
+        <!-- end -->
       </div>
     </div>
     <bottmShare></bottmShare>
@@ -377,19 +512,30 @@
     data () {
       return {
         activeTab: 'tab1',
-        commentTotal:'',
-        commentData:[],
-        productInfo:{},
-        starCount:0
+        commentTotal: '',
+        commentData: [],
+        productInfo: {},
+        starCount: 0,
+        compositionData: [],
+        safeData:[],
+        effectData:[],
+        compCount: {},
+        warnWidth:0,
+        dangerWidth:0,
+        dataTypeStr:''
       }
     },
-    created(){
+    mounted(){
       this.fetchData();
     },
     activated(){
       this.fetchData();
     },
-    components:{
+    deactivated(){
+      this.productInfo = {};
+      this.commentData = [];
+    },
+    components: {
       bottmShare,
       topbar,
       comment,
@@ -399,32 +545,67 @@
       handleTabChange (val) {
         this.activeTab = val
       },
-      fetchData:function () {
-          let id = this.$route.params.id; //获取产品搜索列表页传过来的id
-          let that = this;
-          let url = encodeURI('http://tapi.bevol.cn/entity/comment5/lists/goods?id='+id+'&pager=1&pageSize=20&type=1');
-          jsonp(url, null, function (err, data) {
-            if (err) {
-              console.error(err.message);
-            } else {
-                that.commentTotal = data.result.total;
-                that.commentData = data.result.hotList;
-            }
-          });
+      fetchData: function () {
+        let id = this.$route.params.id; //获取产品搜索列表页传过来的id
+        let that = this;
+        let url = encodeURI('http://api.bevol.cn/entity/comment5/lists/goods?id=' + id + '&pager=1&pageSize=20&type=1');
+        jsonp(url, null, function (err, data) {
+          if (err) {
+            console.error(err.message);
+          } else {
+            that.commentTotal = data.result.total;
+            that.commentData = data.result.hotList;
+          }
+        });
         //首页精选点评传过来一个keywords,用产品搜索接口搜索出产品详细信息
         //x-www-form-urlencoded post的请求的参数仍然是跟在url后面,application/json则是传完整的json
         let keywords = this.$route.params.name;
-        axios.post('api/goods/index3?keywords='+keywords+'',
+        axios.post('api/goods/index3?keywords=' + keywords + '',
           {},
-          {headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'}})
-          .then(function(response) {
+          {headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}})
+          .then(function (response) {
+            //用mid请求成分数据
+            let mid = response.data.data.items[0].mid;
+            axios.post('bevol/goods/info/' + mid + '',
+              {},
+              {headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}})
+              .then(function (response) {
+                that.dataTypeStr = response.data.result.goods.dataTypeStr;
+                that.compositionData = response.data.result.composition;
+                that.safeData = response.data.result.safety;
+                that.effectData = response.data.result.effect;
+                that.compAnaly(response.data.result.composition);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+//              成分数据end
             that.productInfo = response.data.data.items[0];
             that.starCount = parseInt(that.productInfo.grade);
-//            console.log("产品数据+++++++++++++++++++" + JSON.stringify(that.productInfo));
           })
-          .catch(function(error) {
-            alert(error);
+          .catch(function (error) {
+            console.log(error);
           });
+      },
+      compAnaly(arr){
+//              根据成分数组得到安全成分，风险成分，危险成分的数量
+        let safeFlag = 0,
+            warnFlag = 0,
+            dangerFlag = 0;
+        let arrLength = arr.length;
+        arr.forEach(function (value) {
+          if (parseInt(value.safety) < 3) {
+            safeFlag++;
+          } else if (parseInt(value.safety) < 7 && parseInt(value.safety) > 2) {
+            warnFlag++;
+          } else if (parseInt(value.safety) < 11 && parseInt(value.safety) > 6) {
+            dangerFlag++;
+          } else {
+            safeFlag++;
+          }
+        });
+        this.warnWidth = Math.ceil( (warnFlag / arrLength) * 100 );
+        this.dangerWidth = Math.ceil( (dangerFlag / arrLength) * 100 );
       }
     }
   }

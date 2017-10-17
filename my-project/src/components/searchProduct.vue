@@ -1,32 +1,32 @@
 <template>
-  <div class="demo-infinite-container">
+  <div class="demo-infinite-container" id="padding-top">
     <!--搜索框-->
     <div class="fix-top">
     <div class="search-result-container">
       <img src="../img/hole_back.png" alt="" width="44" height="44" v-on:click="back">
       <div class="search-border">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <input ref="searchWords" type="search">
+        <i><img src="../img/search.png" alt="" width="14" height="14" style="vertical-align: middle"></i>
+        <input ref="searchWords" placeholder="搜索50万种化妆品的安全和功效" type="search">
        </div>
     </div>
-    <ul class="choose-container">
-      <li>
-        <span>综合</span> <i class="fa fa-caret-down" aria-hidden="true"></i>
-      </li>
-      <li>
-        <span>评分</span>
-        <i>
-          <div style="height: 10px"><i class="fa fa-caret-up" aria-hidden="true"></i></div>
-          <div><i class="fa fa-caret-down" aria-hidden="true"></i></div>
-        </i>
-      </li>
-      <li>
-        <span>分类</span> <i class="fa fa-caret-down" aria-hidden="true"></i>
-      </li>
-      <li>
-        <span>成分筛选</span> <i class="fa fa-filter" aria-hidden="true"></i>
-      </li>
-    </ul>
+    <!--<ul class="choose-container">-->
+      <!--<li>-->
+        <!--<span>综合</span> <i class="fa fa-caret-down" aria-hidden="true"></i>-->
+      <!--</li>-->
+      <!--<li>-->
+        <!--<span>评分</span>-->
+        <!--<i>-->
+          <!--<div style="height: 10px"><i class="fa fa-caret-up" aria-hidden="true"></i></div>-->
+          <!--<div><i class="fa fa-caret-down" aria-hidden="true"></i></div>-->
+        <!--</i>-->
+      <!--</li>-->
+      <!--<li>-->
+        <!--<span>分类</span> <i class="fa fa-caret-down" aria-hidden="true"></i>-->
+      <!--</li>-->
+      <!--<li>-->
+        <!--<span>成分筛选</span> <i class="fa fa-filter" aria-hidden="true"></i>-->
+      <!--</li>-->
+    <!--</ul>-->
     </div>
     <!--end-->
 
@@ -34,7 +34,7 @@
       <template v-for="item in productData">
         <router-link :to="{name:'productDetail',params: { id: item.id,name : item.title, alias:item.alias , price : item.price ,imgSrc : item.imageSrc}}">
         <div class="list-container">
-          <i><img :src="item.imageSrc" alt="" class="product-img" width="100" height="100" onerror="onerror=null;src='http://iph.href.lu/100x100'"></i>
+          <i><img :src="item.imageSrc" alt="" class="product-img" width="100" height="100" rel="noreferrer"></i>
 
           <div class="product-container">
             <p>{{item.title}}</p>
@@ -124,6 +124,7 @@
       },
       back(){
         window.history.go(-1);
+        this.productData = [];
       }
     }
   }
@@ -139,11 +140,20 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     border: 1px solid #d9d9d9;
-    padding-top: 110px;
   }
-  .list-container{
+  #padding-top{
+    padding-top: 56px;
+    /*padding-top: 110px;*/
+  }
+  .demo-infinite-container .list-container{
     padding: 12px;
     background-color: white;
+  }
+  .demo-infinite-container .list-container > i{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #e8e8e8;
   }
   .product-container{
     margin-left: 12px;
@@ -228,8 +238,7 @@
   }
   .search-border{
     flex-grow: 2;
-    margin-left: 12px;
-    padding: 6px 8px 6px 8px;
+    padding: 6px 8px 6px 18px;
     background-color: #F5F5F5;
     border-radius: 100px;
   }
@@ -238,6 +247,8 @@
     font-size: 16px;
   }
   .search-border input{
+    width: 70%;
+    font-size: 12px;
     color: #323233;
     outline: none;
     border: none;

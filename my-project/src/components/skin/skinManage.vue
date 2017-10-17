@@ -9,6 +9,7 @@
     margin-top: 44px;
     padding: 21px 12px 12px 12px;
     background-color: white;
+    text-align: center;
   }
  .result-container > img{
    text-align: center;

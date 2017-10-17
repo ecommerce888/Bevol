@@ -8,6 +8,8 @@
     vertical-align: top;
   }
   .user-info img{
+    max-height: 40px;
+    max-width: 40px;
     margin-top: 2px;
     border-radius: 50%;
   }
@@ -27,7 +29,7 @@
 <template>
   <div class="user-info">
     <slot name="userImg">
-      <img src="../img/skin_like_bg.png" alt="" width="32" height="32">
+      <img src="../img/skin_like_bg.png" alt="">
     </slot>
     <article>
       <slot name="userName">

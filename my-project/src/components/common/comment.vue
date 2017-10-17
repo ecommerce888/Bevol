@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
   }
-
   .container {
     margin-bottom: 50px;
   }
@@ -12,6 +11,7 @@
     padding: 12px;
     background-color: white;
     text-align: left;
+    margin-top: 0;
   }
 
   .user-info {

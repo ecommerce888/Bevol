@@ -208,7 +208,7 @@
           this.tagData = initData.hotKeyWords;
         } else {
           let that = this;
-          let url = encodeURI('http://tapi.bevol.cn/init7');
+          let url = encodeURI('http://api.bevol.cn/init7');
           jsonp(url, null, function (err, data) {
             if (err) {
               console.error(err.message);
@@ -219,7 +219,8 @@
           });
         }
       },
-      tagSearch(){
+      tagSearch(event){
+          console.log(1111111111111111111111);
         let tagValue = event.currentTarget.innerText;
         this.$refs.searchMain.value = tagValue;
         let that = this;

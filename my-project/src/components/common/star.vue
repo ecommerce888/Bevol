@@ -2,11 +2,13 @@
  .container{
    position: relative;
    display: inline-block;
-   background-color: white;
+   background-color: red;
+   vertical-align: middle;
    width: 110px;
+   transform: translateY(-13px);
  }
  .container #full{
-   position: relative;
+   position: absolute;
    z-index: 2;
  }
  #full > img{

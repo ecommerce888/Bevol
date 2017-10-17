@@ -57,7 +57,7 @@
     text-align: center;
   }
   .skin-module-item img{
-    background-color: #d0d0d0;
+    background-color: transparent;
   }
   .skin-module li:nth-child(1), :nth-child(3) {
     margin-left: 0;
@@ -261,7 +261,7 @@
     methods: {
       fetchData(){
         var that = this;
-        let url = encodeURI('http://tapi.bevol.cn/init7');
+        let url = encodeURI('http://api.bevol.cn/init7');
         jsonp(url, null, function (err, data) {
           if (err) {
             console.error(err.message);

@@ -6,7 +6,9 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const state = {
   isLogin:false,
-  initData:[]
+  initData:[],
+  userInfo:{},
+  practiceData:{}
 };
 const mutations = {
   mutLogin(state,isLogin){
@@ -15,6 +17,12 @@ const mutations = {
   //请求app初始化数据存储在全局，以免重复请求接口
   mutInitData(state,initData){
     state.initData = initData;
+  },
+  mutUserInfo(state,userInfo){
+    state.userInfo = userInfo;
+  },
+  mutPracticeData(state,practiceData){
+    state.practiceData = practiceData;
   }
 };
 const actions = {
@@ -23,6 +31,12 @@ const actions = {
   },
   initData({commit},initData){
     commit('mutInitData',initData)
+  },
+  userInfo({commit},userInfo){
+    commit('mutUserInfo',userInfo)
+  },
+  practiceData({commit},practiceData){
+    commit('mutPracticeData',practiceData)
   }
 };
 const  getters = {

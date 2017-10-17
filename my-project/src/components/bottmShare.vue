@@ -72,7 +72,8 @@
 </style>
 <template>
     <div class="container">
-      <div class="like-dislike">
+      <slot name="top">
+      <div  class="like-dislike">
              <div class="like">
                <img src="../img/my_heart.png" alt="" width="20" height="20">
                <p>心碎</p>
@@ -83,6 +84,7 @@
               <p>心碎</p>
             </div>
       </div>
+      </slot>
       <div class="footer-container">
         <div class="icon-button">
           <img src="../img/my_like.png" alt="" width="18" height="18">

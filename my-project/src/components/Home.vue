@@ -15,34 +15,36 @@
   }
   #top-search{
     display: inline-block;
-    width: 87%;
+    margin-left: 12px;
+    width: 85%;
     color: white;
     background-color: #C596FE;
     border-radius: 100px;
     padding: 5px 15px 5px 15px;
+    text-align: left;
+    font-size: 12px;
   }
-  .fa-envelope-o{
-    margin-right: 10px;
+  #top-search img{
     vertical-align: middle;
-    margin-left: 10px;
-    font-size: 20px;
-    color: white;
+  }
+  #right-message {
+    margin-left: 12px;
+    vertical-align: middle;
   }
 /*swiper*/
-  .swiper-container{
+  #first-swiper{
     width: 100%;
     height: 155px;
-    margin-top: 45px;
+    margin-top: 40px;
     background-color: #7e8082;
   }
-  .swiper-container-second{
-    width: 100%;
+  #second-swiper{
     padding-top: 12px;
     padding-bottom: 12px;
     background-color: white;
   }
-  .swiper-container-second .swiper-slide{
-    width: 80% !important;
+  #second-swiper .swiper-slide{
+    /*width: 80vw !important;*/
     margin-left: 15px;
     padding: 10px;
     border-radius: 5px;
@@ -60,6 +62,7 @@
     border-bottom: 1px solid #bababa;
   }
   .comment img{
+    margin-left: 10px;
     width: 100px;
     height: 100px;
     background-color: #e8e8e8;
@@ -79,17 +82,22 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 16px;
     font-family: 幼圆;
   }
   .comment section p{
     width: 100%;
+    height: 60px;
     padding-right: 12px;
     margin-top: 5px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    -moz-line-clamp: 3;
     overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 14px;
     font-weight: 400;
   }
@@ -103,6 +111,7 @@
     width: 100%;
     height: 56px;
     padding-top:12px;
+    margin: 0;
   }
   .user-info img{
     border-radius: 50%;
@@ -244,51 +253,6 @@
     font-size: 14px;
     text-align: center;
   }
-/*同肤质最爱*/
-  .same-skin-like{
-    margin-top: 10px;
-    background-color: #FFFFFF;
-  }
-  .same-skin-like h3{
-    padding: 10px;
-    border-bottom: 1px solid #D9D9D9;
-    font-family: 幼圆;
-  }
-  .swiper-container-third{
-    padding: 12px;
-  }
-  .third-slide{
-    margin-left: 12px;
-    width: 86px;
-  }
-  .third-slide img:nth-child(2){
-  }
-  .third-slide p{
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    font-size: 12px;
-    color: #323133;
-    line-height: 16px;
-  }
-  #end-slide{
-    display: flex;
-    margin-left: 12px;
-    height: 86px;
-    padding: 20px;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    color: #7e8082;
-    background: #b6b6b6;
-  }
-  #end-slide p:nth-child(1){
-      font-size: 15px;
-     }
-  #end-slide p:nth-child(2){
-      font-size: 8px;
-  }
   /* 骨架屏样式 */
   .load-h3{
     height: 20px;
@@ -326,25 +290,22 @@
     <router-link to="/search">
     <header>
       <div id="top-search">
-        <i class="fa fa-search" aria-hidden="true"></i>
+        <i><img src="../img/search_home.png" alt="" width="16" height="16"></i>
         <span>查询50万种化妆品、5万种成分及心得</span>
       </div>
-      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      <i><img src="../img/title_message.png" alt="" id="right-message" width="18" height="18"></i>
     </header>
     </router-link>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div v-for="item in sliderData" class="swiper-slide">
-          <img v-bind:src="item.image" alt="banner" width="100%" height="155" onerror="onerror=null;src='http://iph.href.lu/414x155'">
-        </div>
-      </div>
-      <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
-
-    </div>
-
+    <swiper :options="swiperOption" id="first-swiper">
+      <!-- slides -->
+      <swiper-slide v-for="item in sliderData" :key="item.id">
+        <img v-bind:src="item.image" alt="banner" width="100%" height="155" onerror="onerror=null;src='http://iph.href.lu/414x155'">
+      </swiper-slide>
+<!-- 分页 -->
+      <div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
     <!--产品分类-->
-    <div class="sort-goods">
+    <div v-once class="sort-goods">
       <div v-for="item in productItems">
         <!--<i class="fa fa-diamond" aria-hidden="true"></i>-->
         <!--<router-link to="SearchProduct">-->
@@ -355,13 +316,15 @@
       </div>
     </div>
     <!--达人原创-->
-    <div class="origin-container">
+    <div v-once class="origin-container">
       <div class="origin" style="border-right: 1px solid #CCCCCC;">
+        <router-link to="/mxOrigin" class="origin">
         <i><img v-bind:src="img.mx_origin" alt="达人原创" width="22" height="24"></i>
         <section>
-          <p>达人原创</p>
-          <p>更多干货不可错过</p>
+          <p>美修原创</p>
+          <p>精选达人美修秘笈</p>
         </section>
+        </router-link>
       </div>
       <router-link to="/hotTopic" class="origin">
         <i><img v-bind:src="img.hot_topic"  alt="热门话题" width="28" height="23"></i>
@@ -374,52 +337,53 @@
 
 <!--精选点评-->
     <h2>精选点评<img src="../img/home_into.png" alt="" width="18" height="18" style="vertical-align: middle"></h2>
-    <div class="swiper-container-second">
-      <div v-show="bannerData.length != 0" class="swiper-wrapper">
-        <div v-for="item in bannerData" class="swiper-slide">
-          <router-link :to="{name:'productDetail',params: {keywords : item.goodsTitle,imgSrc : item.goodsImageSrc,id : item.goodsId,name:item.goodsTitle}}">
+
+    <swiper :options="swiperOptionSecond" id="second-swiper">
+      <swiper-slide v-show="bannerData.length != 0"  v-for="item in bannerData" :key="item.id">
+        <router-link :to="{name:'productDetail',params: {keywords : item.goodsTitle,imgSrc : item.goodsImageSrc,id : item.goodsId,name:item.goodsTitle}}">
           <div class="comment">
-          <img  v-bind:src="item.goodsImageSrc" alt="图片" width="100" height="100" onerror="onerror=null;src='http://iph.href.lu/100x100'">
-          <section>
-            <h3>{{item.goodsTitle}}</h3>
-            <p>
-              {{item.content}}
-            </p>
-          </section>
+            <img  v-bind:src="item.goodsImageSrc" alt="图片" width="100" height="100" onerror="onerror=null;src='http://iph.href.lu/100x100'">
+            <section>
+              <h3>{{item.goodsTitle}}</h3>
+              <p>
+                {{item.content}}
+              </p>
+            </section>
           </div>
           <div class="user-info">
             <img v-bind:src="item.headimgurl" alt="" width="32" height="32">
             <div id="name-job">
               <p>{{item.nickname}}</p>
-              <p>{{item.userDescz}}</p>
+              <p>{{skin(item.skinResults)}}</p>
             </div>
             <p>{{item.essenceCommentNum}}篇精华点评</p>
           </div>
-          </router-link>
-        </div>
-      </div>
+        </router-link>
+      </swiper-slide>
+
       <!-- 数据未渲染时加载骨架屏 -->
       <div v-show="bannerData.length == 0" class="swiper-wrapper">
         <div  class="swiper-slide" v-for="item in 3">
-            <div class="comment">
-              <img  src="" alt="" width="100" height="100">
-              <section>
-                <h3 class="load-h3"></h3>
-                <p class="load-p"></p>
-              </section>
+          <div class="comment">
+            <img  src="" alt="" width="100" height="100">
+            <section>
+              <h3 class="load-h3"></h3>
+              <p class="load-p"></p>
+            </section>
+          </div>
+          <div class="user-info">
+            <img src="" alt="" width="32" height="32">
+            <div class="name-job">
+              <p></p>
+              <p></p>
             </div>
-            <div class="user-info">
-              <img src="" alt="" width="32" height="32">
-              <div class="name-job">
-                <p></p>
-                <p></p>
-              </div>
-              <p class="load-p-small"></p>
-            </div>
+            <p class="load-p-small"></p>
+          </div>
         </div>
       </div>
       <!-- 骨架屏幕end-->
-    </div>
+    </swiper>
+
     <!--我的肤质标签-->
     <div v-if="$store.state.isLogin">
     <div class="skin-tag">
@@ -443,23 +407,6 @@
         </li>
       </ul>
       <p id="skin-more">点击查看详情</p>
-    </div>
-<!--同肤质最爱-->
-    <div class="same-skin-like">
-      <h3>同肤质最爱-精华</h3>
-      <div class="swiper-container-third">
-        <div class="swiper-wrapper">
-          <div v-for="(value,index) in productData"  class="third-slide">
-            <img :src="value.imageSrc" alt="" width="86" height="86" onerror="onerror=null;src='http://iph.href.lu/86x86'">
-            <img :src="skinLikeData[index]" alt="" width="35" height="15" onerror="onerror=null;src='http://iph.href.lu/35x15'">
-            <p>{{value.title}}</p>
-          </div>
-          <div id="end-slide">
-             <p>MORE</p>
-             <p>查看更多</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
     <!--没登录时的肤质标签-->
@@ -489,11 +436,10 @@
   </div>
 </template>
 <script>
-  import Swiper from '../../static/swiper-3.4.2.min.js'
   import axios from 'axios';
-  import { mapState } from  'vuex'
+  import mapState from  'vuex'
+  import { swiper, swiperSlide } from 'vue-awesome-swiper'
   var jsonp = require('jsonp');
-  require('../../static/swiper-3.4.2.min.css')
 
   export default {
       data(){
@@ -516,7 +462,29 @@
             sliderData:[],
             productData:[],
             skinLikeData:["../static/img/TOP1.png","../static/img/TOP2.png","../static/img/TOP3.png",
-              "../static/img/TOP4.png","../static/img/TOP5.png"]
+              "../static/img/TOP4.png","../static/img/TOP5.png"],
+            swiperOption: {
+              //http://www.swiper.com.cn/api/
+              // notNextTick是一个组件自有属性，如果notNextTick设置为true，组件则不会通过NextTick来实例化swiper，也就意味着你可以在第一时间获取到swiper对象，<br>　　　　　　　　假如你需要刚加载遍使用获取swiper对象来做什么事，那么这个属性一定要是true
+              notNextTick: true,
+              autoplay: 3000,
+              direction : 'horizontal',
+              grabCursor : true,
+              setWrapperSize :true,
+              autoHeight: true,
+              pagination : '.swiper-pagination',
+              paginationClickable :true,
+              observeParents:true,
+            },
+            swiperOptionSecond: {
+              width:320,
+              notNextTick: true,
+              direction : 'horizontal',
+              setWrapperSize :true,
+              autoHeight: true,
+              observeParents:true,
+              freeMode : true,
+            },
           }
       },
     created(){
@@ -525,21 +493,11 @@
     computed: {
 //      ...mapState({ headText: state => state.text })
     },
-    components: {},
+    components: {
+      swiper,
+      swiperSlide
+    },
     mounted () {
-      var mySwiper = new Swiper('.swiper-container', {
-        direction: 'horizontal',
-        loop: true,
-        pagination: '.swiper-pagination',
-      });
-      var mySwiperSecond = new Swiper('.swiper-container-second', {
-        direction: 'horizontal',
-        paginationClickable: true,
-      });
-      var mySwiperThird = new Swiper('.swiper-container-third', {
-        direction: 'horizontal',
-        paginationClickable: true,
-      });
 //      this.fetchData();
       this.sameSkinfetchData();
     },
@@ -547,7 +505,7 @@
       fetchData:function () {
 //使用jsonp跨域请求数据
         var that =this;
-        jsonp('http://tapi.bevol.cn/index5', null, function (err, data) {
+        jsonp('http://api.bevol.cn/index5', null, function (err, data) {
             if (err) {
             console.error(err.message);
           } else {
@@ -568,6 +526,60 @@
             console.log(that.productData);
           }
         });
+      },
+      skin: function (tag) {
+//            将取出的肤质标签子母分割拼成真正的肤质标签
+//        let tag = this.userPartData[index].userBaseInfo.skinResults;
+        if (tag != null) {
+          let tagArr = tag.split('_');
+          let realTag = "";
+          tagArr.forEach(function (value) {
+            switch (value) {
+              case "DQ":
+                realTag += "轻干 |";
+                break;
+              case "DZ":
+                realTag += "重干 |";
+                break;
+              case "OQ":
+                realTag += "轻油 |";
+                break;
+              case "OZ":
+                realTag += "重油 |";
+                break;
+              case "RQ":
+                realTag += " 轻耐 |";
+                break;
+              case "RZ":
+                realTag += " 重耐 |";
+                break;
+              case "SQ":
+                realTag += " 轻敏 |";
+                break;
+              case "SZ":
+                realTag += " 重敏 |";
+                break;
+              case "N":
+                realTag += " 非色素 |";
+                break;
+              case "P":
+                realTag += " 色素 |";
+                break;
+              case "T":
+                realTag += " 紧致";
+                break;
+              case "W":
+                realTag += " 皱纹";
+                break;
+              default:
+                realTag += value;
+                break;
+            }
+          });
+          return realTag;
+        }else{
+          return "";
+        }
       }
     }
   }

@@ -12,7 +12,14 @@ import search from '@/components/search'
 import Setting from '@/components/setting'
 import Login from '@/components/login'
 import Personal from '@/components/personal'
+import Register from '@/components/mine/register'
 import skinManage from '@/components/skin/skinManage'
+import findDetail from '@/components/practice/findDetail'
+import mxOrigin from '@/components/practice/mxOrigin'
+import articleDetail from '@/components/practice/articleDetail'
+import emptyBottle from '@/components/practice/emptyBottle'
+import makeUp from '@/components/practice/makeUp'
+import hotTopicList from '@/components/practice/hotTopicList'
 
 
 
@@ -24,64 +31,99 @@ export default new Router({
       path: '/',
       name: 'Nav',
       component: Nav,
-      children:[
+      children: [
         {
-          path:'/',
-          name:'Home',
-          component:Home
+          path: '/',
+          name: 'Home',
+          component: Home
         },
         {
-          path:'practice',
-          name:'practice',
-          component:Practice
+          path: 'practice',
+          name: 'practice',
+          component: Practice
         },
         {
-          path:'mine',
-          name:'mine',
-          component:Mine
+          path: 'mine',
+          name: 'mine',
+          component: Mine
         },
         {
-          path:'personal',
-          name:'personal',
-          component:Personal
+          path: 'personal',
+          name: 'personal',
+          component: Personal
         },
         {
-          path:'skin',
-          name:'skin',
-          component:Skin
+          path: 'skin',
+          name: 'skin',
+          component: Skin
         },
         {
-          path:'skinManage',
-          name:'skinManage',
-          component:skinManage
+          path: 'skinManage',
+          name: 'skinManage',
+          component: skinManage
         }
       ]
     },
     {
-      path:'/SearchProduct',
-      name:'searchProduct',
-      component:SearchProduct
+      path: '/SearchProduct',
+      name: 'searchProduct',
+      component: SearchProduct
     },
     {
-      path:'/productDetail',
-      name:'productDetail',
-      component:productDetail
+      path: '/productDetail',
+      name: 'productDetail',
+      component: productDetail
     },
     {
-      path:'/hotTopic',
-      name:'hotTopic',
-      component:hotTopic
+      path: '/hotTopic',
+      name: 'hotTopic',
+      component: hotTopic
     },
     {
-      path:'/search',
-      name:'search',
-      component:search,
-      meta:{ notKeepAlive : true }
+      path: '/search',
+      name: 'search',
+      component: search,
+      meta: {notKeepAlive: true}
     },
     {
-      path:'/setting',
-      name:'setting',
-      component:Setting
-    }
+      path: '/setting',
+      name: 'setting',
+      component: Setting
+    },
+    {
+      path: '/findDetail',
+      name: 'findDetail',
+      component: findDetail
+    },
+    {
+      path: '/mxOrigin',
+      name: 'mxOrigin',
+      component: mxOrigin
+    },
+    {
+      path: '/articleDetail',
+      name: 'articleDetail',
+      component: articleDetail
+    },
+    {
+      path: '/emptyBottle',
+      name: 'emptyBottle',
+      component: emptyBottle
+    },
+    {
+      path: '/makeUp',
+      name: 'makeUp',
+      component: makeUp
+    },
+    {
+      path: '/hotTopicList',
+      name: 'hotTopicList',
+      component: hotTopicList
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
   ]
 })

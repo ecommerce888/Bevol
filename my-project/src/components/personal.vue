@@ -1,5 +1,5 @@
 <template>
-  <component v-bind:is="currentView">
+  <component v-bind:is="currentView" v-on:navChange="otherChange">
     <!-- 组件在 vm.currentview 变化时改变！ -->
   </component>
 </template>
@@ -19,6 +19,12 @@
     components:{
           mine,
           login
+    },
+    methods:{
+      otherChange:function (data) {
+        this.$emit("navChange",data);
+        console.log(data);
+      }
     }
   }
 </script>

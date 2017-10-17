@@ -90,6 +90,19 @@
     color: #313033;
     line-height: 22px;
   }
+  .new-message{
+    position: absolute;
+    left: 29px;
+    top: 9px;
+    width: 15px;
+    height: 15px;
+    color: white;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    background-color: #ff6c72;
+    border-radius: 50%
+  }
 </style>
 <template>
   <div class="container">
@@ -98,17 +111,20 @@
       <p style="margin-left: 12px">设置</p>
     </router-link>
     <p slot="title">我的</p>
-    <img slot="right" src="./../img/my_message.png" alt="" width="48" height="48">
+    <div slot="right" style="position: relative">
+      <img src="./../img/my_message.png" alt="" width="48" height="48">
+      <p class="new-message">2</p>
+    </div>
   </topbar>
      <userInfo id="user-info">
-         <img id="userImg" slot="userImg" src="../img/skin_like_bg.png" alt="" width="50" height="50">
-         <p id="userName" slot="userName">柠檬少年深入我心</p>
-         <p id="userTag" slot="userTag">轻干 | 轻敏 | 非色素 | 耐受</p>
+         <img id="userImg" slot="userImg" :src="userInfo.headimgurl" alt="" width="50" height="50">
+         <p id="userName" slot="userName">{{userInfo.nickname}}</p>
+         <p id="userTag" slot="userTag">{{skin()}}</p>
      </userInfo>
     <!--修行值-->
     <div class="practiceScore">
-      <p>获赞 12</p>
-      <p>修行值 115</p>
+      <p>获赞 {{userInfo.commentLikeNum}}</p>
+      <p>修行值 {{userInfo.score}}</p>
     </div>
     <!--我的收藏-->
     <div class="mine">
@@ -137,15 +153,75 @@
   </div>
 </template>
 <script>
-  import userInfo from '../components/userInfo'
-  import topbar from '../components/topBar'
+  import userInfo from '../components/userInfo';
+  import topbar from '../components/topBar';
+  var axios = require('axios');
   export default{
       data(){
-          return{}
+          return{
+              userInfo:{}
+          }
       },
+    mounted(){
+          //在登陆页请求到用户数据放到state中。取出来就可以了
+      this.userInfo = this.$store.state.userInfo;
+    },
     components:{
           userInfo,
           topbar
+    },
+    methods:{
+      skin: function () {
+//            将取出的肤质标签子母分割拼成真正的肤质标签
+        let tag = this.userInfo.skinResults;
+        tag = tag + "";
+        let tagArr = tag.split('_');
+        let realTag = "";
+        tagArr.forEach(function (value) {
+          switch (value) {
+            case "DQ":
+              realTag += "轻干 |";
+              break;
+            case "DZ":
+              realTag += "重干 |";
+              break;
+            case "OQ":
+              realTag += "轻油 |";
+              break;
+            case "OZ":
+              realTag += "重油 |";
+              break;
+            case "RQ":
+              realTag += " 轻耐 |";
+              break;
+            case "RZ":
+              realTag += " 重耐 |";
+              break;
+            case "SQ":
+              realTag += " 轻敏 |";
+              break;
+            case "SZ":
+              realTag += " 重敏 |";
+              break;
+            case "N":
+              realTag += " 非色素 |";
+              break;
+            case "P":
+              realTag += " 色素 |";
+              break;
+            case "T":
+              realTag += " 紧致";
+              break;
+            case "W":
+              realTag += " 皱纹";
+              break;
+            default:
+              realTag += value;
+              break;
+          }
+        });
+        return realTag;
+      }
     }
   }
 </script>
