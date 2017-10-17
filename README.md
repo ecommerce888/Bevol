@@ -61,6 +61,8 @@ __完成的功能__
 * 产品列表
 * 产品详情
 * 肤质详情
+* 登陆
+* 注册
 
 ## PWA (Progress Web Application) 实践
 谷歌的chrome团队提出pwa，旨在提升web应用的安全性，稳定性，和用户体验。在提升用户体验上提出了PPRL原则。即preload、precache、render、lazyout。
@@ -72,7 +74,6 @@ __完成的功能__
 
 __待完成的功能__
 
-* 登陆，注册（这个要传md5生成的一个token,真心不好搞）
 * 肤质测试题
 * 文章详情
 * 发布评论

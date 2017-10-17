@@ -15,7 +15,7 @@ require('swiper/dist/css/swiper.css')
 Vue.config.productionTip = false;
 Vue.use(MuseUI);
 Vue.use(VueAwesomeSwiper);
-Vue.use(VueScroller)
+Vue.use(VueScroller);
 
 
 /* eslint-disable no-new */
